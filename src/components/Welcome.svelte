@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { UserProfile } from '$lib/types.js';
+	import ScoreTicker from './ScoreTicker.svelte';
 
 	interface Props {
 		profile: UserProfile;
@@ -10,7 +11,7 @@
 	let { profile, onStart, onLeaderboard }: Props = $props();
 </script>
 
-<div class="flex flex-col items-center gap-8 py-8 text-center">
+<div class="flex flex-col items-center gap-6 py-6 text-center">
 
 	<!-- Avatar -->
 	{#if profile.avatarUrl}
@@ -29,7 +30,7 @@
 		</div>
 	{/if}
 
-	<!-- Greeting + subtitle -->
+	<!-- Greeting -->
 	<div>
 		<p class="text-base font-medium" style="color: var(--text-muted)">Hey, <span class="font-bold" style="color: var(--text)">{profile.name}</span> 👋</p>
 		<h2 class="mt-1 text-2xl font-black leading-tight" style="color: var(--text)">Are you ready to test<br/>your knowledge?</h2>
@@ -58,6 +59,12 @@
 		>
 			🏆 Leaderboard
 		</button>
+	</div>
+
+	<!-- Live score ticker -->
+	<div class="w-full">
+		<p class="mb-2 text-left text-xs font-semibold uppercase tracking-widest" style="color: var(--text-dim)">🔴 Live activity</p>
+		<ScoreTicker />
 	</div>
 
 </div>

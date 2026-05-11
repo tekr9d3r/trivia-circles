@@ -77,16 +77,8 @@
 <main class="min-h-screen px-4 py-6" style="background-color: var(--bg);">
 	<div class="mx-auto w-full max-w-md">
 
-		<!-- Header -->
-		<header class="mb-6 flex items-center justify-between">
-			<!-- Logo mark only -->
-			<div class="relative flex h-9 w-9 items-center justify-center rounded-full"
-				style="background: linear-gradient(135deg, #f97316 0%, #7c3aed 100%)">
-				<span class="text-sm font-black text-white">G</span>
-				<span class="sparkle absolute -right-0.5 -top-0.5 text-[10px] text-white">✦</span>
-			</div>
-
-			<!-- Right: wallet info or question counter -->
+		<!-- Header: wallet info only -->
+		<header class="mb-6 flex items-center justify-end">
 			{#if phase === 'question'}
 				<div class="rounded-full px-3 py-1 text-xs font-semibold"
 					style="background: var(--surface); color: var(--text-muted); border: 1px solid var(--border)">
