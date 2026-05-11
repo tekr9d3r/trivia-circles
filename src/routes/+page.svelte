@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { isMiniappMode, onWalletChange } from '@aboutcircles/miniapp-sdk';
 	import { getProfile } from '$lib/circles.js';
-	import { QUESTIONS, shuffleOptions } from '$lib/questions.js';
+	import { getRandomQuestions, shuffleOptions } from '$lib/questions.js';
 	import { calcQuestionScore } from '$lib/scoring.js';
 	import { saveScore } from '$lib/supabase.js';
 	import type { AnswerRecord, GamePhase, Question, UserProfile } from '$lib/types.js';
@@ -34,7 +34,7 @@
 	});
 
 	function startGame() {
-		questions = QUESTIONS.map(shuffleOptions);
+		questions = getRandomQuestions(10).map(shuffleOptions);
 		currentIndex = 0;
 		answers = [];
 		totalScore = 0;
