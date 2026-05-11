@@ -59,7 +59,7 @@
 		</div>
 
 	{:else}
-		<!-- Top 3 podium -->
+		<!-- Podium — only when 3+ entries -->
 		{#if entries.length >= 3}
 			<div class="grid grid-cols-3 gap-2 pb-1">
 				{#each [entries[1], entries[0], entries[2]] as entry, col}
@@ -89,9 +89,10 @@
 			</div>
 		{/if}
 
-		<!-- Remaining entries -->
+		<!-- All entries as flat list (top 3 shown here too when < 3 entries) -->
 		<div class="space-y-2">
-			{#each entries.slice(3) as entry, i}
+			{#each entries.length >= 3 ? entries.slice(3) : entries as entry, i}
+				{@const rank = entries.length >= 3 ? i + 4 : i + 1}
 				{@const isMe = entry.wallet.toLowerCase() === profile.address.toLowerCase()}
 				<div
 					class="flex items-center gap-3 rounded-xl px-4 py-3 text-sm"
@@ -99,7 +100,9 @@
 						? 'background: rgba(249,115,22,0.07); border: 1.5px solid var(--orange)'
 						: 'background: var(--surface); border: 1px solid var(--border)'}"
 				>
-					<span class="w-5 text-center text-xs font-bold" style="color: var(--text-dim)">{i + 4}</span>
+					<span class="w-5 text-center text-xs font-bold" style="color: var(--text-dim)">
+						{rank <= 3 ? MEDALS[rank - 1] : rank}
+					</span>
 
 					{#if entry.avatar_url}
 						<img src={entry.avatar_url} alt={entry.username} class="h-7 w-7 rounded-full object-cover" />
