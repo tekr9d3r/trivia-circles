@@ -77,16 +77,16 @@
 <main class="min-h-screen px-4 py-6" style="background-color: var(--bg);">
 	<div class="mx-auto w-full max-w-md">
 
-		<!-- Header: wallet info only -->
+		<!-- Header -->
 		<header class="mb-6 flex items-center justify-end">
 			{#if phase === 'question'}
-				<div class="rounded-full px-3 py-1 text-xs font-semibold"
-					style="background: var(--surface); color: var(--text-muted); border: 1px solid var(--border)">
+				<div class="rounded-full px-3 py-1 text-xs font-bold"
+					style="background: var(--blue-light); color: var(--blue); border: 1px solid rgba(55,55,200,0.15)">
 					{currentIndex + 1} / {questions.length}
 				</div>
 			{:else if profile}
 				<div class="flex items-center gap-2 rounded-full px-3 py-1.5"
-					style="background: var(--surface); border: 1px solid var(--border)">
+					style="background: var(--surface); border: 1px solid var(--border); box-shadow: 0 1px 4px rgba(55,55,200,0.08)">
 					<div class="h-2 w-2 rounded-full bg-green-500"></div>
 					<span class="text-xs font-semibold" style="color: var(--text-muted)">
 						{profile.name.length > 16 ? profile.address.slice(0, 6) + '…' + profile.address.slice(-4) : profile.name}
@@ -95,16 +95,16 @@
 			{/if}
 		</header>
 
-		<!-- Progress bar -->
+		<!-- Progress bar (question phase) -->
 		{#if phase === 'question'}
 			<div class="mb-5 flex gap-1">
 				{#each questions as _, i}
 					<div class="h-1 flex-1 rounded-full transition-all duration-300"
 						style="{i < currentIndex
-							? 'background: var(--orange)'
+							? 'background: var(--blue)'
 							: i === currentIndex
-								? 'background: var(--purple)'
-								: 'background: rgba(0,0,0,0.1)'}">
+								? 'background: var(--orange)'
+								: 'background: rgba(55,55,200,0.1)'}">
 					</div>
 				{/each}
 			</div>
@@ -115,7 +115,7 @@
 			<div class="flex flex-col items-center gap-4 py-24 text-center">
 				<div class="relative">
 					<div class="h-12 w-12 animate-spin rounded-full border-2 border-transparent"
-						style="border-top-color: var(--orange); border-right-color: var(--orange)"></div>
+						style="border-top-color: var(--blue); border-right-color: var(--blue)"></div>
 					<span class="sparkle absolute -right-1 -top-1 text-xs" style="color: var(--orange)">✦</span>
 				</div>
 				<p class="text-sm" style="color: var(--text-muted)">
@@ -150,20 +150,20 @@
 		{/if}
 
 		<!-- Footer -->
-		<footer class="mt-8 rounded-2xl p-4" style="background: var(--surface); border: 1px solid var(--border); box-shadow: 0 1px 4px rgba(0,0,0,0.06)">
-			<p class="mb-3 text-center text-xs font-semibold uppercase tracking-widest" style="color: var(--text-dim)">
+		<footer class="mt-8 rounded-2xl p-4" style="background: var(--surface); border: 1px solid var(--border); box-shadow: 0 2px 8px rgba(55,55,200,0.06)">
+			<p class="mb-3 text-center text-xs font-bold uppercase tracking-widest" style="color: var(--text-dim)">
 				Built by
 			</p>
 			<div class="flex items-center gap-3">
 				<img src="/tekr0x-avatar.jpg" alt="Tekr0x.eth"
 					class="h-9 w-9 shrink-0 rounded-full object-cover"
-					style="border: 2px solid var(--orange)" />
+					style="border: 2px solid var(--blue)" />
 				<div class="min-w-0 flex-1">
 					<p class="text-sm font-bold" style="color: var(--text)">Tekr0x.eth</p>
 					<a href="https://x.com/tekr0x" target="_blank" rel="noopener noreferrer"
 						class="text-xs transition-colors"
 						style="color: var(--text-dim)"
-						onmouseenter={(e) => (e.currentTarget.style.color = 'var(--orange)')}
+						onmouseenter={(e) => (e.currentTarget.style.color = 'var(--blue)')}
 						onmouseleave={(e) => (e.currentTarget.style.color = 'var(--text-dim)')}>
 						@tekr0x on X ↗
 					</a>
@@ -172,10 +172,10 @@
 					href="https://app.gnosis.io/p/0x15BE89708053Cbc405F29095ECf803D51b5812C7"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="shrink-0 rounded-xl px-3 py-2 text-xs font-bold uppercase tracking-wide text-white transition-all active:scale-95"
-					style="background: var(--orange); box-shadow: 0 4px 12px rgba(249,115,22,0.25)"
-					onmouseenter={(e) => (e.currentTarget.style.background = 'var(--orange-hover)')}
-					onmouseleave={(e) => (e.currentTarget.style.background = 'var(--orange)')}>
+					class="shrink-0 rounded-xl px-3 py-2 text-xs font-bold text-white transition-all active:scale-95"
+					style="background: var(--blue); box-shadow: 0 4px 12px var(--blue-shadow)"
+					onmouseenter={(e) => (e.currentTarget.style.background = 'var(--blue-hover)')}
+					onmouseleave={(e) => (e.currentTarget.style.background = 'var(--blue)')}>
 					Join my circle ✦
 				</a>
 			</div>

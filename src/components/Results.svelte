@@ -29,15 +29,15 @@
 
 	<!-- Score hero -->
 	<div class="relative flex flex-col items-center">
-		<span class="sparkle absolute -left-6 -top-2 text-lg" style="color: var(--orange)">✦</span>
-		<span class="sparkle-delay absolute -right-5 top-3 text-xs" style="color: var(--purple)">✦</span>
+		<span class="sparkle absolute -left-7 -top-2 text-lg" style="color: var(--orange)">✦</span>
+		<span class="sparkle-delay absolute -right-6 top-3 text-xs" style="color: var(--blue)">✦</span>
 
 		<div
 			class="flex h-32 w-32 flex-col items-center justify-center rounded-full"
-			style="background: linear-gradient(135deg, rgba(249,115,22,0.12), rgba(109,40,217,0.12)); border: 2.5px solid var(--orange); box-shadow: 0 0 32px rgba(249,115,22,0.18)"
+			style="background: linear-gradient(135deg, rgba(55,55,200,0.1), rgba(109,40,217,0.1)); border: 3px solid var(--blue); box-shadow: 0 0 0 8px rgba(55,55,200,0.06), 0 8px 32px var(--blue-shadow)"
 		>
 			<span class="text-4xl font-black" style="color: var(--text)">{totalScore}</span>
-			<span class="text-xs font-semibold uppercase tracking-wider" style="color: var(--text-muted)">points</span>
+			<span class="text-xs font-bold uppercase tracking-wider" style="color: var(--text-muted)">points</span>
 		</div>
 	</div>
 
@@ -46,16 +46,16 @@
 		<p class="text-3xl">{verdict.icon}</p>
 		<h2 class="mt-1 text-2xl font-black uppercase tracking-tight" style="color: var(--text)">{verdict.label}</h2>
 		<p class="mt-1 text-sm font-medium" style="color: var(--text-muted)">
-			{correctCount} / {answers.length} correct · {pct}%
+			{correctCount} / {answers.length} correct &nbsp;·&nbsp; {pct}%
 		</p>
 	</div>
 
-	<!-- 10-cell correctness grid -->
-	<div class="w-full rounded-2xl p-4" style="background: var(--surface); border: 1px solid var(--border); box-shadow: 0 1px 4px rgba(0,0,0,0.05)">
+	<!-- Correctness grid -->
+	<div class="w-full rounded-2xl p-4" style="background: var(--surface); border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(55,55,200,0.06)">
 		<div class="grid grid-cols-10 gap-1.5">
 			{#each answers as a, i}
 				<div
-					class="flex aspect-square items-center justify-center rounded-lg text-xs font-black"
+					class="flex aspect-square items-center justify-center rounded-xl text-xs font-black"
 					style="{a.correct
 						? 'background: rgba(34,197,94,0.12); color: #15803d'
 						: 'background: rgba(239,68,68,0.08); color: #dc2626'}"
@@ -65,11 +65,10 @@
 				</div>
 			{/each}
 		</div>
-		<!-- Score bar -->
-		<div class="mt-3 h-1.5 w-full rounded-full" style="background: rgba(0,0,0,0.07)">
+		<div class="mt-3 h-1.5 w-full rounded-full" style="background: rgba(55,55,200,0.08)">
 			<div
 				class="h-full rounded-full transition-all duration-700"
-				style="width: {pct}%; background: linear-gradient(90deg, var(--orange), var(--purple))"
+				style="width: {pct}%; background: linear-gradient(90deg, var(--blue), #6d28d9)"
 			></div>
 		</div>
 	</div>
@@ -81,14 +80,14 @@
 				class="flex items-center justify-between rounded-xl px-4 py-2.5 text-sm"
 				style="background: var(--surface); border: 1px solid var(--border)"
 			>
-				<span class="font-semibold" style="color: var(--text-muted)">Q{i + 1}</span>
-				<span style="{a.correct ? 'color: #15803d' : 'color: #dc2626'}">{a.correct ? '✓ Correct' : '✗ Wrong'}</span>
+				<span class="w-8 font-bold" style="color: var(--text-dim)">Q{i + 1}</span>
+				<span class="flex-1 font-semibold" style="{a.correct ? 'color: #15803d' : 'color: #dc2626'}">{a.correct ? '✓ Correct' : '✗ Wrong'}</span>
 				{#if a.correct}
 					<span class="text-xs" style="color: var(--text-dim)">{a.timeRemaining}s left</span>
 				{:else}
 					<span class="text-xs" style="color: var(--text-dim)">—</span>
 				{/if}
-				<span class="font-bold tabular-nums" style="color: var(--orange)">{a.points} pts</span>
+				<span class="ml-3 font-black tabular-nums" style="color: var(--orange)">{a.points} pts</span>
 			</div>
 		{/each}
 	</div>
@@ -97,19 +96,19 @@
 	<div class="flex w-full flex-col gap-2.5 pt-1">
 		<button
 			onclick={onViewLeaderboard}
-			class="w-full rounded-2xl py-4 text-sm font-bold uppercase tracking-wide text-white transition-all active:scale-95"
-			style="background: var(--orange); box-shadow: 0 8px 24px rgba(249,115,22,0.25)"
-			onmouseenter={(e) => (e.currentTarget.style.background = 'var(--orange-hover)')}
-			onmouseleave={(e) => (e.currentTarget.style.background = 'var(--orange)')}
+			class="w-full rounded-2xl py-4 text-sm font-bold text-white transition-all active:scale-95"
+			style="background: var(--blue); box-shadow: 0 8px 24px var(--blue-shadow)"
+			onmouseenter={(e) => (e.currentTarget.style.background = 'var(--blue-hover)')}
+			onmouseleave={(e) => (e.currentTarget.style.background = 'var(--blue)')}
 		>
 			View Leaderboard ✦
 		</button>
 		<button
 			onclick={onPlayAgain}
-			class="w-full rounded-2xl py-3.5 text-sm font-semibold uppercase tracking-wide transition-all active:scale-95"
+			class="w-full rounded-2xl py-3.5 text-sm font-semibold transition-all active:scale-95"
 			style="background: var(--surface); border: 1.5px solid var(--border); color: var(--text-muted)"
-			onmouseenter={(e) => (e.currentTarget.style.borderColor = 'rgba(0,0,0,0.2)')}
-			onmouseleave={(e) => (e.currentTarget.style.borderColor = 'var(--border)')}
+			onmouseenter={(e) => { e.currentTarget.style.borderColor = 'var(--blue)'; e.currentTarget.style.color = 'var(--blue)'; }}
+			onmouseleave={(e) => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-muted)'; }}
 		>
 			Play Again
 		</button>

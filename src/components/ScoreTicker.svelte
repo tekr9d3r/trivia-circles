@@ -20,7 +20,6 @@
 		{ username: 'gnosis_pay_fan', score: 1050, correct: 8 },
 	];
 
-	// Real entries + simulated, duplicated so scroll never ends
 	const allItems = $derived(
 		(() => {
 			const real = entries.map(e => ({ username: e.username, score: e.score, correct: e.correct }));
@@ -29,20 +28,19 @@
 		})()
 	);
 
-	// Each row is 44px; show 3 rows
 	const ROW_H = 44;
 	const VISIBLE = 3;
 </script>
 
-<div class="overflow-hidden rounded-2xl" style="background: var(--surface); border: 1px solid var(--border); height: {ROW_H * VISIBLE}px">
+<div class="overflow-hidden rounded-2xl" style="background: var(--surface); border: 1px solid var(--border); box-shadow: 0 2px 8px rgba(55,55,200,0.06); height: {ROW_H * VISIBLE}px">
 	<div class="ticker-track">
 		{#each allItems as item}
 			<div class="flex items-center gap-2 px-4 text-sm" style="height: {ROW_H}px; white-space: nowrap">
-				<span style="color: var(--orange)">✦</span>
+				<span style="color: var(--blue)">✦</span>
 				<span>
 					<span class="font-semibold" style="color: var(--text)">{item.username}</span>
 					<span style="color: var(--text-muted)"> scored </span>
-					<span class="font-bold" style="color: var(--orange)">{item.score} pts</span>
+					<span class="font-black" style="color: var(--blue)">{item.score} pts</span>
 					<span style="color: var(--text-dim)"> ({item.correct}/10)</span>
 				</span>
 			</div>
