@@ -120,6 +120,12 @@ export const QUESTIONS: Question[] = [
 		question: "What's the vibe of Circles' economy model?",
 		options: ['Trust Networks', 'Mining Pools', 'AI Trading', 'Ponzinomics'],
 		answerIndex: 0
+	},
+	{
+		id: 21,
+		question: 'Which of the following was NOT incubated by Gnosis?',
+		options: ['Aave', 'CoW Swap', 'Safe', 'Gnosis Pay'],
+		answerIndex: 0
 	}
 ];
 
