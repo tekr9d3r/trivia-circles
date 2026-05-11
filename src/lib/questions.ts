@@ -112,7 +112,7 @@ export const QUESTIONS: Question[] = [
 	{
 		id: 19,
 		question: 'What does SIWE mean?',
-		options: ['Sign-In Ethereum', 'Secure Internet Wallet', 'Send Instant Web3 ETH', 'Simple Wallet Entry'],
+		options: ['Sign-In With Ethereum', 'Secure Internet Wallet', 'Send Instant Web3 ETH', 'Simple Wallet Entry'],
 		answerIndex: 0
 	},
 	{
