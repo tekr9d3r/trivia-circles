@@ -13,10 +13,17 @@
 
 	let entries = $state<LeaderboardEntry[]>([]);
 	let loading = $state(true);
+	let fetchError = $state<string | null>(null);
 
 	onMount(async () => {
-		entries = await getTopScores();
-		loading = false;
+		try {
+			entries = await getTopScores();
+		} catch (e: any) {
+			fetchError = e?.message ?? 'Unknown error';
+			console.error('[leaderboard] fetch error', e);
+		} finally {
+			loading = false;
+		}
 	});
 
 	const MEDALS = ['🥇', '🥈', '🥉'];
@@ -36,6 +43,12 @@
 			<div class="h-8 w-8 animate-spin rounded-full border-2 border-transparent"
 				style="border-top-color: var(--orange)"></div>
 			<p class="text-sm" style="color: var(--text-muted)">Loading scores…</p>
+		</div>
+
+	{:else if fetchError}
+		<div class="rounded-2xl p-5 text-center" style="background: rgba(239,68,68,0.08); border: 1px solid #ef4444">
+			<p class="text-sm font-semibold" style="color: #dc2626">Could not load scores</p>
+			<p class="mt-1 font-mono text-xs" style="color: #dc2626">{fetchError}</p>
 		</div>
 
 	{:else if entries.length === 0}

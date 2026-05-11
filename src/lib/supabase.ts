@@ -94,7 +94,11 @@ export async function getTopScores(): Promise<LeaderboardEntry[]> {
 		.order('score', { ascending: false })
 		.limit(100);
 
-	if (error || !data) return [];
+	if (error) {
+		console.error('[supabase] select error', error.code, error.message);
+		throw new Error(error.message);
+	}
+	if (!data) return [];
 
 	const seen = new Set<string>();
 	const top: LeaderboardEntry[] = [];
