@@ -159,12 +159,11 @@
 				Built by
 			</p>
 			<div class="flex items-center gap-3">
-				<div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-black text-white"
-					style="background: linear-gradient(135deg, #f97316, #7c3aed)">
-					T
-				</div>
+				<img src="/tekr0x-avatar.jpg" alt="Tekr0x.eth"
+					class="h-9 w-9 shrink-0 rounded-full object-cover"
+					style="border: 2px solid var(--orange)" />
 				<div class="min-w-0 flex-1">
-					<p class="text-sm font-bold" style="color: var(--text)">tekr0x</p>
+					<p class="text-sm font-bold" style="color: var(--text)">Tekr0x.eth</p>
 					<a href="https://x.com/tekr0x" target="_blank" rel="noopener noreferrer"
 						class="text-xs transition-colors"
 						style="color: var(--text-dim)"
