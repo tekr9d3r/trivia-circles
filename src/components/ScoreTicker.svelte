@@ -29,9 +29,9 @@
 		})()
 	);
 
-	// Each row is 44px; show 5 rows
+	// Each row is 44px; show 3 rows
 	const ROW_H = 44;
-	const VISIBLE = 5;
+	const VISIBLE = 3;
 </script>
 
 <div class="overflow-hidden rounded-2xl" style="background: var(--surface); border: 1px solid var(--border); height: {ROW_H * VISIBLE}px">
