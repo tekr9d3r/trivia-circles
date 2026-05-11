@@ -128,7 +128,7 @@
 	{#if !loading && !fetchError}
 		<div>
 			<p class="mb-2 text-xs font-semibold uppercase tracking-widest" style="color: var(--text-dim)">🔴 Live activity</p>
-			<ScoreTicker {entries} />
+			<ScoreTicker />
 		</div>
 	{/if}
 
