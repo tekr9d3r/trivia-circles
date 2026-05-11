@@ -88,11 +88,14 @@ export async function getTopScores(): Promise<LeaderboardEntry[]> {
 			.slice(0, 20);
 	}
 
+	console.log('[supabase] fetching leaderboard, isMock=', isMock);
 	const { data, error } = await supabase!
 		.from('leaderboard')
 		.select('*')
 		.order('score', { ascending: false })
 		.limit(100);
+
+	console.log('[supabase] select result', { data, error });
 
 	if (error) {
 		console.error('[supabase] select error', error.code, error.message);
