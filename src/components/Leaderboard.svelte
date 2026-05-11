@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { getTopScores } from '$lib/supabase.js';
 	import type { LeaderboardEntry, UserProfile } from '$lib/types.js';
+	import ScoreTicker from './ScoreTicker.svelte';
 
 	interface Props {
 		profile: UserProfile;
@@ -120,6 +121,14 @@
 					<span class="font-bold tabular-nums" style="color: var(--orange)">{entry.score}</span>
 				</div>
 			{/each}
+		</div>
+	{/if}
+
+	<!-- Live score ticker -->
+	{#if !loading && !fetchError}
+		<div>
+			<p class="mb-2 text-xs font-semibold uppercase tracking-widest" style="color: var(--text-dim)">🔴 Live activity</p>
+			<ScoreTicker {entries} />
 		</div>
 	{/if}
 

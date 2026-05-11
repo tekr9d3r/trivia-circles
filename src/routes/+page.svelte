@@ -79,22 +79,26 @@
 
 		<!-- Header -->
 		<header class="mb-6 flex items-center justify-between">
-			<div class="flex items-center gap-2.5">
-				<div class="relative flex h-9 w-9 items-center justify-center rounded-full"
-					style="background: linear-gradient(135deg, #f97316 0%, #7c3aed 100%)">
-					<span class="text-sm font-black text-white">G</span>
-					<span class="sparkle absolute -right-0.5 -top-0.5 text-[10px] text-white">✦</span>
-				</div>
-				<div>
-					<p class="text-xs font-semibold uppercase tracking-widest" style="color: var(--orange)">Circles</p>
-					<h1 class="text-sm font-bold leading-none" style="color: var(--text)">Trivia</h1>
-				</div>
+			<!-- Logo mark only -->
+			<div class="relative flex h-9 w-9 items-center justify-center rounded-full"
+				style="background: linear-gradient(135deg, #f97316 0%, #7c3aed 100%)">
+				<span class="text-sm font-black text-white">G</span>
+				<span class="sparkle absolute -right-0.5 -top-0.5 text-[10px] text-white">✦</span>
 			</div>
 
+			<!-- Right: wallet info or question counter -->
 			{#if phase === 'question'}
 				<div class="rounded-full px-3 py-1 text-xs font-semibold"
 					style="background: var(--surface); color: var(--text-muted); border: 1px solid var(--border)">
 					{currentIndex + 1} / {questions.length}
+				</div>
+			{:else if profile}
+				<div class="flex items-center gap-2 rounded-full px-3 py-1.5"
+					style="background: var(--surface); border: 1px solid var(--border)">
+					<div class="h-2 w-2 rounded-full bg-green-500"></div>
+					<span class="text-xs font-semibold" style="color: var(--text-muted)">
+						{profile.name.length > 16 ? profile.address.slice(0, 6) + '…' + profile.address.slice(-4) : profile.name}
+					</span>
 				</div>
 			{/if}
 		</header>

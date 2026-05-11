@@ -29,10 +29,11 @@
 		</div>
 	{/if}
 
-	<!-- Title + subtitle -->
+	<!-- Greeting + subtitle -->
 	<div>
-		<h2 class="text-3xl font-black uppercase tracking-tight" style="color: var(--text)">Circles Trivia</h2>
-		<p class="mt-2 text-sm" style="color: var(--text-muted)">
+		<p class="text-base font-medium" style="color: var(--text-muted)">Hey, <span class="font-bold" style="color: var(--text)">{profile.name}</span> 👋</p>
+		<h2 class="mt-1 text-2xl font-black leading-tight" style="color: var(--text)">Are you ready to test<br/>your knowledge?</h2>
+		<p class="mt-3 text-sm" style="color: var(--text-muted)">
 			10 questions &nbsp;·&nbsp; 30s each &nbsp;·&nbsp; 1500 pts max
 		</p>
 	</div>
