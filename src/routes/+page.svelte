@@ -128,7 +128,7 @@
 			</div>
 
 		{:else if phase === 'welcome' && profile}
-			<Welcome {profile} onStart={startGame} />
+			<Welcome {profile} onStart={startGame} onLeaderboard={() => (phase = 'leaderboard')} />
 
 		{:else if phase === 'question' && currentQuestion}
 			{#key currentIndex}
