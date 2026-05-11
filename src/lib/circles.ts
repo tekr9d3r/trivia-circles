@@ -1,8 +1,16 @@
 import type { UserProfile } from './types.js';
 
+const IPFS_GATEWAY = 'https://ipfs.io/ipfs/';
+const fallback = (address: string): UserProfile => ({
+	address,
+	name: address.slice(0, 6) + '…' + address.slice(-4),
+	avatarUrl: null
+});
+
 export async function getProfile(address: string): Promise<UserProfile> {
 	try {
-		const res = await fetch('https://rpc.aboutcircles.com/', {
+		// Step 1: get avatar info to find the IPFS CID
+		const rpcRes = await fetch('https://rpc.aboutcircles.com/', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
@@ -12,18 +20,21 @@ export async function getProfile(address: string): Promise<UserProfile> {
 				params: [address]
 			})
 		});
-		const json = await res.json();
-		const result = json?.result;
+		const rpcJson = await rpcRes.json();
+		const cid = rpcJson?.result?.cidV0;
+
+		if (!cid) return fallback(address);
+
+		// Step 2: fetch profile JSON from IPFS
+		const ipfsRes = await fetch(IPFS_GATEWAY + cid);
+		const profile = await ipfsRes.json();
+
 		return {
 			address,
-			name: result?.name || address.slice(0, 6) + '…' + address.slice(-4),
-			avatarUrl: result?.previewImageUrl ?? null
+			name: profile?.name || fallback(address).name,
+			avatarUrl: profile?.previewImageUrl ?? null
 		};
 	} catch {
-		return {
-			address,
-			name: address.slice(0, 6) + '…' + address.slice(-4),
-			avatarUrl: null
-		};
+		return fallback(address);
 	}
 }
