@@ -43,10 +43,7 @@
 		<p class="text-sm font-semibold" style="color: var(--text-muted)">
 			Hey, <span class="font-bold" style="color: var(--text)">{profile.name}</span> 👋
 		</p>
-		<h2 class="mt-2 text-2xl font-black leading-tight" style="color: var(--text)">
-			Test your<br/><span style="color: var(--blue)">Circles & Gnosis</span><br/>knowledge
-		</h2>
-		<div class="mt-3 flex items-center justify-center gap-2">
+<div class="mt-3 flex items-center justify-center gap-2">
 			<span class="rounded-full px-3 py-1 text-xs font-semibold" style="background: var(--blue-light); color: var(--blue)">10 questions</span>
 			<span class="rounded-full px-3 py-1 text-xs font-semibold" style="background: rgba(249,115,22,0.1); color: var(--orange)">30s each</span>
 			<span class="rounded-full px-3 py-1 text-xs font-semibold" style="background: var(--blue-light); color: var(--blue)">1500 pts max</span>
