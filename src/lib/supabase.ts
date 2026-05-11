@@ -66,8 +66,13 @@ export async function saveScore(entry: Omit<LeaderboardEntry, 'id' | 'created_at
 		mockStore.push({ ...entry, id: crypto.randomUUID(), created_at: new Date().toISOString() });
 		return;
 	}
-	const { error } = await supabase!.from('leaderboard').insert(entry);
-	if (error) console.error('Failed to save score:', error.message);
+	console.log('[supabase] saving score', entry);
+	const { data, error } = await supabase!.from('leaderboard').insert(entry).select();
+	if (error) {
+		console.error('[supabase] insert error', error.code, error.message, error.details, error.hint);
+	} else {
+		console.log('[supabase] insert ok', data);
+	}
 }
 
 export async function getTopScores(): Promise<LeaderboardEntry[]> {
