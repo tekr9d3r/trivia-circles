@@ -10,6 +10,7 @@
 	import QuestionCard from '../components/Question.svelte';
 	import Results from '../components/Results.svelte';
 	import Leaderboard from '../components/Leaderboard.svelte';
+	import Profile from '../components/Profile.svelte';
 
 	let phase = $state<GamePhase>('idle');
 	let profile = $state<UserProfile | null>(null);
@@ -18,6 +19,7 @@
 	let answers = $state<AnswerRecord[]>([]);
 	let totalScore = $state(0);
 	let scoreSaved = $state(false);
+	let profileOpen = $state(false);
 
 	onMount(() => {
 		if (isMiniappMode()) {
@@ -85,13 +87,16 @@
 					{currentIndex + 1} / {questions.length}
 				</div>
 			{:else if profile}
-				<div class="flex items-center gap-2 rounded-full px-3 py-1.5"
-					style="background: var(--surface); border: 1px solid var(--border); box-shadow: 0 1px 4px rgba(55,55,200,0.08)">
+				<button
+					onclick={() => (profileOpen = true)}
+					class="flex items-center gap-2 rounded-full px-3 py-1.5 transition-all active:scale-95"
+					style="background: var(--surface); border: 1px solid var(--border); box-shadow: 0 1px 4px rgba(55,55,200,0.08)"
+				>
 					<div class="h-2 w-2 rounded-full bg-green-500"></div>
 					<span class="text-xs font-semibold" style="color: var(--text-muted)">
 						{profile.name.length > 16 ? profile.address.slice(0, 6) + '…' + profile.address.slice(-4) : profile.name}
 					</span>
-				</div>
+				</button>
 			{/if}
 		</header>
 
@@ -183,3 +188,7 @@
 
 	</div>
 </main>
+
+{#if profileOpen && profile}
+	<Profile {profile} onClose={() => (profileOpen = false)} />
+{/if}
